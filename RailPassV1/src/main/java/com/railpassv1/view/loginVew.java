@@ -4,7 +4,7 @@
  */
 package com.railpassv1.view;
 import com.railpassv1.model.loginModel;
-import com.railpassv1.controller.mainController;
+import com.railpassv1.controller.loginController;
 import  com.railpassv1.view.notification.Notification;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -326,7 +326,7 @@ public class loginVew extends javax.swing.JFrame {
         obj.setUsername(txtUser.getText());
         obj.setPassword(txtPass.getText());
         
-        if (mainController.checkLogin(obj)) {
+        if (loginController.checkLogin(obj)) {
            loader.show();
            login.hide();
             
@@ -334,7 +334,6 @@ public class loginVew extends javax.swing.JFrame {
                @Override
                 public void run() {
                 mainView main2 = new mainView();
-                main2.setExtendedState(MAXIMIZED_BOTH);
                 main2.show(); 
              }
            }, 1000*3);

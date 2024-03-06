@@ -7,8 +7,8 @@ com\railpassv1\view\loginVew.class
 com\railpassv1\view\loginVew$1.class
 com\railpassv1\view\loginVew$5.class
 com\railpassv1\view\mainView$2.class
-com\railpassv1\controller\mainController.class
 com\railpassv1\view\notification\GraphicsUtilities.class
+com\railpassv1\controller\loginController.class
 com\railpassv1\view\loginVew$3.class
 com\railpassv1\view\loginVew$2.class
 com\railpassv1\view\notification\Notification$2.class
@@ -17,4 +17,5 @@ com\railpassv1\view\notification\Notification$1.class
 com\railpassv1\view\notification\Notification$Location.class
 com\railpassv1\view\mainView$1.class
 com\railpassv1\view\notification\Notification$Type.class
+com\railpassv1\controller\databaseController.class
 com\railpassv1\view\notification\Notification.class
