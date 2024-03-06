@@ -27,6 +27,12 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file /home/runner/work/Railway-System/pom.xml
+    - name: Debug Info
+      run: |
+        pwd
+        ls -l
+        ls -l /home/runner/work/Railway-System/
+
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
