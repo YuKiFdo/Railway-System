@@ -20,19 +20,19 @@ public class mainView extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnExit = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnIssue = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnIssue = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        btnHistory = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnHistory = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btnConfig = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        btnConfig = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,14 +61,6 @@ public class mainView extends javax.swing.JFrame {
             }
         });
 
-        btnIssue.setBackground(new java.awt.Color(0, 153, 204));
-        btnIssue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnIssue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIssueActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ISSUE\n");
@@ -80,6 +72,14 @@ public class mainView extends javax.swing.JFrame {
         jLabel2.setText("TICKETS");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/t.png"))); // NOI18N
+
+        btnIssue.setBackground(new java.awt.Color(0, 153, 204));
+        btnIssue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIssue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIssueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,11 +95,11 @@ public class mainView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(80, 80, 80)
                             .addComponent(jLabel2))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addComponent(btnIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 0, 0)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +115,6 @@ public class mainView extends javax.swing.JFrame {
                 .addComponent(btnIssue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
         );
 
-        btnHistory.setBackground(new java.awt.Color(0, 153, 204));
-        btnHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("TICKETS");
@@ -129,6 +126,9 @@ public class mainView extends javax.swing.JFrame {
         jLabel4.setText("HISTORY");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tim (1).png"))); // NOI18N
+
+        btnHistory.setBackground(new java.awt.Color(0, 153, 204));
+        btnHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -169,10 +169,10 @@ public class mainView extends javax.swing.JFrame {
         jLabel7.setFocusable(false);
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/407009 (1).png"))); // NOI18N
+
         btnConfig.setBackground(new java.awt.Color(0, 153, 204));
         btnConfig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/407009 (1).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -245,10 +245,9 @@ public class mainView extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(108, 108, 108))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(12, 12, 12)
