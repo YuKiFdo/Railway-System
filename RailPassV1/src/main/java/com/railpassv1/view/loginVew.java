@@ -335,6 +335,8 @@ public class loginVew extends javax.swing.JFrame {
                 public void run() {
                 mainView main2 = new mainView();
                 main2.show(); 
+                 Notification notify = new Notification(main2, Notification.Type.SUCCESS, Notification.Location.TOP_RIGHT, "Login Successful!");
+                 notify.showNotification();
              }
            }, 1000*3);
         } else {

@@ -2,6 +2,7 @@ com\railpassv1\view\notification\ShadowRenderer.class
 com\railpassv1\view\notification\Notification$1$1.class
 com\railpassv1\model\loginModel.class
 com\railpassv1\view\loginVew$6.class
+com\railpassv1\view\mainView$3.class
 com\railpassv1\view\mainView.class
 com\railpassv1\view\loginVew.class
 com\railpassv1\view\loginVew$1.class
