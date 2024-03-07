@@ -5,19 +5,17 @@
 package com.railpassv1.controller;
 import java.sql.*;
 import java.util.Arrays;
-import javax.swing.JTable;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author yukif
  */
 public class historyController {
+    Connection conn = null;
     
     public void getData(DefaultTableModel tableModel) {
-        Connection conn = null;
+        
 
         try {
             conn = databaseController.connect();
@@ -48,6 +46,64 @@ public class historyController {
         } finally {
             databaseController.closeConnection(conn);
         }
+    }
+    
+//     public ResultSet getAllTicketsbyType(String type){
+//        
+//        try{
+//            conn = databaseController.connect();
+//            String query = "SELECT * FROM tickets WHERE train = ?";
+//            PreparedStatement statement = conn.prepareStatement(query);
+//            statement.setString(1, type);
+//            
+//            // Execute the query and retrieve the result set
+//            ResultSet results = statement.executeQuery();
+//            
+//            return results;
+//
+//        }
+//        catch (SQLException e){
+//            System.out.println("SQL Error occurred");
+//        }
+//        return null;
+//    }
+    
+    public ResultSet getAllTicketsbyTypeAndDate(String type, String date) {
+    try {
+        conn = databaseController.connect();
+        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM tickets WHERE 1");
+
+        if (type != null) {
+            queryBuilder.append(" AND train = ?");
+        }
+
+        if (date != null) {
+            queryBuilder.append(" AND date = ?");
+        }
+
+        PreparedStatement statement = conn.prepareStatement(queryBuilder.toString());
+
+        int parameterIndex = 1; // Parameter index for PreparedStatement
+
+        if (type != null) {
+            statement.setString(parameterIndex++, type);
+        }
+
+        if (date != null) {
+            statement.setString(parameterIndex, date);
+        }
+
+        // Execute the query and retrieve the result set
+        ResultSet results = statement.executeQuery();
+
+        return results;
+
+    } catch (SQLException e) {
+        System.out.println("SQL Error occurred: " + e.getMessage());
+        e.printStackTrace(); // Print the stack trace for debugging purposes
+    } 
+
+    return null;
     }
     
 }

@@ -16,7 +16,9 @@ com\railpassv1\view\ticketIssueView$4.class
 com\railpassv1\view\ticketHistoyView$3.class
 com\railpassv1\view\mainView$4.class
 com\railpassv1\view\ticketIssueView$7.class
+com\railpassv1\model\NonEditableTableModel.class
 com\railpassv1\view\notification\Notification$2.class
+com\railpassv1\view\ticketHistoyView$7.class
 com\railpassv1\view\notification\Notification$Location.class
 com\railpassv1\view\mainView$1.class
 com\railpassv1\view\ticketIssueView$3.class
@@ -31,6 +33,7 @@ com\railpassv1\view\loginVew$1.class
 com\railpassv1\view\loginVew$5.class
 com\railpassv1\view\ticketIssueView$6.class
 com\railpassv1\controller\pdfController.class
+com\railpassv1\view\ticketHistoyView$6.class
 com\railpassv1\view\adminView$1.class
 com\railpassv1\controller\loginController.class
 com\railpassv1\view\ticketHistoyView.class

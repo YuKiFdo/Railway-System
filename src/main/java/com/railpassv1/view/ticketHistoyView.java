@@ -4,22 +4,17 @@
  */
 package com.railpassv1.view;
 
+import com.railpassv1.model.NonEditableTableModel;
 import com.formdev.flatlaf.FlatLightLaf;
-import com.railpassv1.controller.databaseController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.railpassv1.controller.historyController;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
+import com.railpassv1.model.NonEditableTableModel;
 
 /**
  *
@@ -53,13 +48,14 @@ public class ticketHistoyView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        trainHistory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        txtDate = new javax.swing.JTextField();
+        cmbTrain = new javax.swing.JComboBox<>();
+        btnSearch = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -92,7 +88,7 @@ public class ticketHistoyView extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        trainHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -129,25 +125,37 @@ public class ticketHistoyView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        trainHistory.setShowGrid(true);
+        jScrollPane1.setViewportView(trainHistory);
 
         jLabel1.setText("Search by Train:");
 
         jLabel3.setText("Search by Date:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtDateActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Train", "Rajarata Rajini", "Udarata Manike" }));
+        cmbTrain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Train", "Rajarata Rajini", "Udarata Manike" }));
 
-        jButton1.setText("Search");
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton2.setText("PRINT STATEMENT");
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,22 +171,23 @@ public class ticketHistoyView extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnReset)
+                        .addGap(84, 84, 84)
+                        .addComponent(btnSearch))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbTrain, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(18, 18, 18)
@@ -200,13 +209,15 @@ public class ticketHistoyView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbTrain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSearch)
+                            .addComponent(btnReset))
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,13 +255,74 @@ public class ticketHistoyView extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtDateActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+              try {
+            String type = (String)cmbTrain.getSelectedItem();
+            String datew = (String) txtDate.getText();
+            
+            if (type.equals("Select a Train")) {
+                type = null;
+            }
+            
+            if (datew.equals("")) {
+                datew = null;
+            }
+            
+            historyController controller = new historyController();
+            
+            // Get the results from the database
+            ResultSet results = controller.getAllTicketsbyTypeAndDate(type, datew);
+            
+           NonEditableTableModel tableModel = new NonEditableTableModel(new Object[0][10],
+                new String[]{"ID", "Date", "Time", "Name", "NIC", "Train", "Class", "From Location", "To Location", "Total"});
+        
+        // Extract the data into the table
+        while (results.next()) {
+            int id = Integer.parseInt(results.getString("id"));
+            String date = results.getString("date");
+            String time = results.getString("time");
+            String name = results.getString("name");
+            String nic = results.getString("nic");
+            String train = results.getString("train");
+            String tclass = results.getString("tclass");
+            String fromLocation = results.getString("from_location");
+            String toLocation = results.getString("to_location");
+            double total = Double.parseDouble(results.getString("total"));
+
+            tableModel.addRow(new Object[]{id, date, time, name, nic, train, tclass, fromLocation, toLocation, total});
+        }
+        
+        trainHistory.setModel(tableModel);
+        
+        if (trainHistory.getColumnModel().getColumnCount() > 0) {
+            trainHistory.getColumnModel().getColumn(0).setResizable(false);
+            trainHistory.getColumnModel().getColumn(0).setPreferredWidth(3);
+            trainHistory.getColumnModel().getColumn(1).setResizable(false);
+            trainHistory.getColumnModel().getColumn(2).setResizable(false);
+            trainHistory.getColumnModel().getColumn(2).setPreferredWidth(2);
+            trainHistory.getColumnModel().getColumn(3).setResizable(false);
+        }
+            
+        }
+        catch (NumberFormatException | SQLException e){
+            System.out.println(e.getMessage());
+            System.out.println("ERROR - Cannot load the pets from the database");
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        initializeComponents();
+        txtDate.setText("");
+        cmbTrain.setSelectedIndex(0);
+    }//GEN-LAST:event_btnResetActionPerformed
     
       private void initializeComponents() {
         historyController hs = new historyController();
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) trainHistory.getModel();
         hs.getData(tableModel);
     }
 
@@ -285,21 +357,22 @@ public class ticketHistoyView extends javax.swing.JFrame {
     }
     
     public javax.swing.JTable getJTable() {
-        return jTable1;
+        return trainHistory;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnExit;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cmbTrain;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable trainHistory;
+    private javax.swing.JTextField txtDate;
     // End of variables declaration//GEN-END:variables
 }
