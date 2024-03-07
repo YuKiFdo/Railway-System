@@ -3,7 +3,6 @@ package com.railpassv1.controller;
 import com.railpassv1.model.loginModel;
 
 import java.sql.*;
-import  com.railpassv1.view.notification.Notification;
 
 import java.util.Arrays;
 
