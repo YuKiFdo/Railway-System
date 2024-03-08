@@ -15,6 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import com.railpassv1.model.NonEditableTableModel;
+import com.railpassv1.view.notification.Notification;
+import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 
 /**
  *
@@ -22,7 +27,7 @@ import com.railpassv1.model.NonEditableTableModel;
  */
 
 public class ticketHistoyView extends javax.swing.JFrame {
-    
+    private Timer timer;
 
     /**1
      * Creates new form ticketHistoyView
@@ -30,6 +35,7 @@ public class ticketHistoyView extends javax.swing.JFrame {
     public ticketHistoyView() {
         initComponents();
         initializeComponents();
+        initTimer();
 
     }
     
@@ -56,6 +62,7 @@ public class ticketHistoyView extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        lblTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -149,6 +156,11 @@ public class ticketHistoyView extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton2.setText("PRINT STATEMENT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +168,8 @@ public class ticketHistoyView extends javax.swing.JFrame {
                 btnResetActionPerformed(evt);
             }
         });
+
+        lblTime.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,7 +180,9 @@ public class ticketHistoyView extends javax.swing.JFrame {
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(316, 316, 316)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(btnExit)
                 .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -201,9 +217,11 @@ public class ticketHistoyView extends javax.swing.JFrame {
                     .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -319,6 +337,11 @@ public class ticketHistoyView extends javax.swing.JFrame {
         txtDate.setText("");
         cmbTrain.setSelectedIndex(0);
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Notification notify = new Notification(this, Notification.Type.SUCCESS, Notification.Location.TOP_RIGHT, "Statement is Printed!!");
+        notify.showNotification();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
       private void initializeComponents() {
         historyController hs = new historyController();
@@ -356,6 +379,24 @@ public class ticketHistoyView extends javax.swing.JFrame {
 //        });
     }
     
+     private void initTimer() {
+        // Set up a Timer to update the label every second (1000 milliseconds)
+        timer = new Timer(1000, (ActionEvent e) -> {
+            updateLabel();
+        });
+        timer.start(); // Start the timer
+    }
+
+     private void updateLabel() {
+        // Get the current system time
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String formattedTime = dateFormat.format(now);
+
+        // Update the label text
+        lblTime.setText("Time: " + formattedTime);
+    }
+    
     public javax.swing.JTable getJTable() {
         return trainHistory;
     }
@@ -372,6 +413,7 @@ public class ticketHistoyView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTime;
     private javax.swing.JTable trainHistory;
     private javax.swing.JTextField txtDate;
     // End of variables declaration//GEN-END:variables

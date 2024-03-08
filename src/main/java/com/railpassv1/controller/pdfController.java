@@ -4,13 +4,13 @@
  */
 package com.railpassv1.controller;
 import java.io.IOException;
+import java.awt.Desktop;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import com.railpassv1.model.ticketIssueModel;
+import java.io.File;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 
 /**
  *
@@ -70,13 +70,24 @@ public class pdfController {
             contentStream.endText();
             contentStream.close();
 
-            document.save("train_ticket.pdf");
+            File tempFile = File.createTempFile("train_ticket", ".pdf");
+            document.save(tempFile);
+            
+            printPDF(tempFile);
+            
             document.close();
             
             return true;
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+    private static void printPDF(File fileToPrint) {
+        try {
+            Desktop.getDesktop().print(fileToPrint);
+        } catch (IOException e) {
+            System.out.println("Error opening print dialog: " + e.getMessage());
         }
     }
 }

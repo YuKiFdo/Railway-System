@@ -332,14 +332,18 @@ public class loginVew extends javax.swing.JFrame {
         obj.setPassword(txtPass.getText());
         
         if (loginController.checkLogin(obj)) {
-           loader.show();
-           login.hide();
+           loader.setVisible(true);
+           login.setVisible(false);
             
            new java.util.Timer().schedule(new TimerTask() {
                @Override
                 public void run() {
                 mainView main2 = new mainView();
-                main2.show(); 
+                main2.show();
+                loader.setVisible(false);
+                Notification notify = new Notification(main2, Notification.Type.SUCCESS, Notification.Location.TOP_RIGHT, "Login Successful!");
+                notify.showNotification();
+                dispose();
              } 
            }, 1000*3);
         } else {

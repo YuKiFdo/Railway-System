@@ -48,25 +48,6 @@ public class historyController {
         }
     }
     
-//     public ResultSet getAllTicketsbyType(String type){
-//        
-//        try{
-//            conn = databaseController.connect();
-//            String query = "SELECT * FROM tickets WHERE train = ?";
-//            PreparedStatement statement = conn.prepareStatement(query);
-//            statement.setString(1, type);
-//            
-//            // Execute the query and retrieve the result set
-//            ResultSet results = statement.executeQuery();
-//            
-//            return results;
-//
-//        }
-//        catch (SQLException e){
-//            System.out.println("SQL Error occurred");
-//        }
-//        return null;
-//    }
     
     public ResultSet getAllTicketsbyTypeAndDate(String type, String date) {
     try {
